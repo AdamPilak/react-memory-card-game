@@ -14,12 +14,12 @@ $text-color: #ffffff;
   font-family: "Exo 2", sans-serif;
 }
 
-html,
-body,
-#root,
-.layout {
-  height: 100%;
-}
+// html,
+// body,
+// #root,
+// .layout {
+//   height: 100%;
+// }
 
 html {
   font-size: 12px;
@@ -33,19 +33,30 @@ html {
   }
 }
 
-body {
-}
+// html {
+//   min-height: 100%;
+// }
+
+// body {
+//   height: 100%;
+// }
+
+// #root {
+// }
 
 .layout {
   background: $layout-bg;
+  height: 100%;
 }
 
 nav {
-  position: relative;
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: center;
   height: 5.5rem;
   background: rgba(0, 0, 0, 70%);
+  width: 100%;
   padding: 1.5rem 4%;
   z-index: 100;
 
@@ -106,11 +117,12 @@ nav {
 .home {
   display: flex;
   justify-content: center;
-  height: calc(100% - 5.5rem);
-  padding: 0 4% 5rem 4%;
+  height: 100%;
+  padding: 10.5rem 4% 5rem 4%;
 
   .container {
     display: grid;
+    min-height: calc(100vh - 10.5rem - 5rem);
     grid-template-rows: 60% 40%;
     height: 100%;
     width: 100%;
@@ -166,6 +178,8 @@ nav {
   }
 
   @media (min-width: 768px) {
+    padding-bottom: 7rem;
+
     .container {
       h1 {
         justify-self: flex-start;
@@ -189,12 +203,8 @@ nav {
     }
   }
 
-  @media (min-width: 768px) {
-    padding-bottom: 7rem;
-  }
-
   @media (min-width: 1280px) {
-    padding: 0 10% 10rem 10%;
+    padding: 5.5rem 10% 10rem 10%;
     .container {
       h1 {
         width: 900px;
