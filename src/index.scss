@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 
+// Variables
 $layout-bg: linear-gradient(-169.278deg, #600075 0%, rgb(12, 0, 87) 100%);
 $btn-bg: linear-gradient(-135.474deg, #4b005b 0%, #67007c 37%);
 $text-color: #ffffff;
+$nav-height: 5.5rem;
 
+// Reset
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,13 +17,18 @@ $text-color: #ffffff;
   font-family: "Exo 2", sans-serif;
 }
 
-// html,
-// body,
-// #root,
-// .layout {
-//   height: 100%;
-// }
+// Global Styles
+.btn {
+  background: $btn-bg;
+  padding: 0.75em 1.5em;
+  color: $text-color;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  filter: drop-shadow(2px 2px 2px #33003e);
+}
 
+// Layout
 html {
   font-size: 12px;
 
@@ -33,31 +41,31 @@ html {
   }
 }
 
-// html {
-//   min-height: 100%;
-// }
-
-// body {
-//   height: 100%;
-// }
-
-// #root {
-// }
-
-.layout {
+body {
   background: $layout-bg;
-  height: 100%;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  padding: $nav-height 4% 0 4%;
+
+  @media (min-width: 1280px) {
+    padding: $nav-height 10% 0 10%;
+  }
+}
+
+// Navigation
 nav {
   position: fixed;
   top: 0;
   display: flex;
   justify-content: center;
-  height: 5.5rem;
+  height: $nav-height;
   background: rgba(0, 0, 0, 70%);
   width: 100%;
   padding: 1.5rem 4%;
+  backdrop-filter: blur(7px);
   z-index: 100;
 
   .container {
@@ -70,8 +78,8 @@ nav {
 
     .logo {
       color: $text-color;
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 500;
     }
 
     .nav-links {
@@ -114,122 +122,96 @@ nav {
   }
 }
 
+// Home
 .home {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  padding: 10.5rem 4% 5rem 4%;
+  display: grid;
+  grid-template-rows: 60% 40%;
+  min-height: calc(100vh - $nav-height);
+  max-width: 1600px;
+  width: 100%;
+  padding: 4rem 0;
 
-  .container {
-    display: grid;
-    min-height: calc(100vh - 10.5rem - 5rem);
-    grid-template-rows: 60% 40%;
-    height: 100%;
-    width: 100%;
-    max-width: 1600px;
+  h1 {
+    align-self: flex-end;
+    justify-self: center;
+    text-align: center;
+    color: $text-color;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 127%;
+    width: 230px;
+  }
 
-    h1 {
-      align-self: flex-end;
-      justify-self: center;
-      text-align: center;
+  .play-now {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-end;
+    justify-self: center;
+    h2 {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
       color: $text-color;
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      line-height: 127%;
-      width: 230px;
     }
 
-    .play-now {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      align-self: flex-end;
-      justify-self: center;
-      h2 {
-        margin: 2rem 0;
-        color: $text-color;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      .play-now-btn {
-        font-size: 1.25rem;
-      }
+    .play-now-btn {
+      font-size: 1.5rem;
     }
   }
 
   @media (min-width: 640px) {
-    .container {
-      h1 {
-        width: 460px;
-        font-size: 2.25rem;
-      }
+    h1 {
+      width: 460px;
+      font-size: 2.25rem;
+    }
 
-      .play-now {
-        h2 {
-          font-size: 1.75rem;
-        }
-
-        .play-now-btn {
-          font-size: 1.5rem;
-        }
+    .play-now {
+      h2 {
+        font-size: 1.75rem;
       }
     }
   }
 
   @media (min-width: 768px) {
-    padding-bottom: 7rem;
+    padding: 7rem 0 9rem 0;
 
-    .container {
-      h1 {
-        justify-self: flex-start;
-        text-align: left;
-        width: 700px;
-        font-size: 2.75rem;
+    h1 {
+      justify-self: flex-start;
+      text-align: left;
+      width: 700px;
+      font-size: 2.75rem;
+    }
+
+    .play-now {
+      justify-self: flex-start;
+      align-items: flex-start;
+
+      h2 {
+        font-size: 1.75rem;
       }
 
-      .play-now {
-        justify-self: flex-start;
-        align-items: flex-start;
-
-        h2 {
-          font-size: 1.75rem;
-        }
-
-        .play-now-btn {
-          font-size: 1.5rem;
-        }
+      .play-now-btn {
+        font-size: 1.5rem;
       }
     }
   }
 
   @media (min-width: 1280px) {
-    padding: 5.5rem 10% 10rem 10%;
-    .container {
-      h1 {
-        width: 900px;
-        font-size: 3rem;
+    h1 {
+      width: 900px;
+      font-size: 3rem;
+    }
+
+    .play-now {
+      h2 {
+        font-size: 2rem;
       }
 
-      .play-now {
-        h2 {
-          font-size: 2rem;
-        }
-
-        .play-now-btn {
-          font-size: 1.75rem;
-        }
+      .play-now-btn {
+        font-size: 1.75rem;
       }
     }
   }
-}
-
-.btn {
-  background: $btn-bg;
-  padding: 0.75em 1.5em;
-  color: $text-color;
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  filter: drop-shadow(2px 2px 2px #33003e);
 }
