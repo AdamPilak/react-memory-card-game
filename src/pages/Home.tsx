@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <section className="home">
@@ -8,7 +10,9 @@ const Home = () => {
 
       <span className="play-now">
         <h2>Try it now for free!</h2>
-        <button className="btn play-now-btn">Play Now!</button>
+        <Link to="/play" className="btn play-now-btn">
+          Play Now!
+        </Link>
       </span>
     </section>
   );

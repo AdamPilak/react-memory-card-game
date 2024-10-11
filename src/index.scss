@@ -2,7 +2,7 @@
 
 // Variables
 $layout-bg: linear-gradient(-169.278deg, #70008a 0%, rgb(15, 0, 116) 100%);
-$btn-bg: linear-gradient(-135.474deg, #4b005b 0%, #67007c 37%);
+$btn-bg: linear-gradient(-135.474deg, #4b005b 0%, #70008a 37%);
 $text-color: #ffffff;
 $nav-height: 5.5rem;
 
@@ -69,9 +69,9 @@ nav {
   display: flex;
   justify-content: center;
   height: $nav-height;
-  background: rgba(0, 0, 0, 70%);
   width: 100%;
   padding: 1.5rem 4%;
+  background: rgba(0, 0, 0, 70%);
   backdrop-filter: blur(7px);
   z-index: 100;
 
@@ -90,19 +90,44 @@ nav {
     }
 
     .nav-links {
-      display: none;
-      gap: 5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 70%);
+      backdrop-filter: blur(7px);
+      font-size: 1.25rem;
+      font-weight: 500;
+      gap: 2rem;
+      padding: 1.5rem 4% 3rem;
+      transition: transform 0.25s;
 
       .nav-link {
+        width: fit-content;
         color: $text-color;
         font-weight: 500;
+
+        &:hover {
+          color: #e7e973;
+        }
       }
+    }
+
+    .visible {
+      transform: translateX(0);
+    }
+
+    .hidden {
+      transform: translateX(-100%);
     }
 
     .menu-btn {
       background: transparent;
       height: 25px;
       width: 25px;
+      cursor: pointer;
 
       svg {
         width: 100%;
@@ -115,7 +140,14 @@ nav {
   @media (min-width: 768px) {
     .container {
       .nav-links {
-        display: flex;
+        position: relative;
+        inset: unset;
+        flex-direction: row;
+        gap: 5rem;
+        font-size: 1rem;
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
       }
 
       .menu-btn {
@@ -144,6 +176,7 @@ nav {
     font-weight: 600;
     line-height: 127%;
     width: 230px;
+    animation: opacityAnimation 2s;
   }
 
   .play-now {
@@ -153,6 +186,7 @@ nav {
     align-self: flex-end;
     justify-self: center;
     margin-top: 4rem;
+    animation: opacityAnimation 4s;
 
     h2 {
       margin-bottom: 2rem;
@@ -163,6 +197,11 @@ nav {
 
     .play-now-btn {
       font-size: 1.5rem;
+
+      &:hover {
+        scale: 1.1;
+        color: #e7e973;
+      }
     }
   }
 
@@ -205,12 +244,6 @@ nav {
     }
   }
 
-  // @media (min-width: 1280px) {
-  //   // h1 {
-  //   //   width: 800px;
-  //   // }
-  // }
-
   @media (min-width: 1536px) {
     h1 {
       width: 900px;
@@ -226,5 +259,14 @@ nav {
         font-size: 1.75rem;
       }
     }
+  }
+}
+
+@keyframes opacityAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
   }
 }
