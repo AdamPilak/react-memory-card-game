@@ -42,7 +42,7 @@ html {
     font-size: 14px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     font-size: 16px;
   }
 }
@@ -204,9 +204,9 @@ nav {
   }
 
   @media (min-width: 1280px) {
-    h1 {
-      width: 800px;
-    }
+    // h1 {
+    //   width: 800px;
+    // }
   }
 
   @media (min-width: 1536px) {
