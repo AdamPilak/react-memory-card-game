@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Variables
-$layout-bg: linear-gradient(-169.278deg, #600075 0%, rgb(12, 0, 87) 100%);
+$layout-bg: linear-gradient(-169.278deg, #70008a 0%, rgb(15, 0, 116) 100%);
 $btn-bg: linear-gradient(-135.474deg, #4b005b 0%, #67007c 37%);
 $text-color: #ffffff;
 $nav-height: 5.5rem;
@@ -18,6 +18,12 @@ $nav-height: 5.5rem;
 }
 
 // Global Styles
+section {
+  min-height: calc(100dvh - $nav-height);
+  max-width: 1600px;
+  width: 100%;
+}
+
 .btn {
   background: $btn-bg;
   padding: 0.75em 1.5em;
@@ -43,15 +49,16 @@ html {
 
 body {
   background: $layout-bg;
+  min-height: 100dvh;
 }
 
 main {
   display: flex;
   justify-content: center;
-  padding: $nav-height 4% 0 4%;
+  padding: $nav-height 4% 0;
 
-  @media (min-width: 1280px) {
-    padding: $nav-height 10% 0 10%;
+  @media (min-width: 1536px) {
+    padding: $nav-height 10% 0;
   }
 }
 
@@ -105,10 +112,6 @@ nav {
     }
   }
 
-  @media (min-width: 1280px) {
-    padding: 1.5rem 10%;
-  }
-
   @media (min-width: 768px) {
     .container {
       .nav-links {
@@ -120,15 +123,16 @@ nav {
       }
     }
   }
+
+  @media (min-width: 1536px) {
+    padding: 1.5rem 10%;
+  }
 }
 
 // Home
 .home {
   display: grid;
   grid-template-rows: 60% 40%;
-  min-height: calc(100dvh - $nav-height);
-  max-width: 1600px;
-  width: 100%;
   padding: 4rem 0;
 
   h1 {
@@ -148,8 +152,9 @@ nav {
     align-items: center;
     align-self: flex-end;
     justify-self: center;
+    margin-top: 4rem;
+
     h2 {
-      margin-top: 3rem;
       margin-bottom: 2rem;
       color: $text-color;
       font-size: 1.75rem;
@@ -175,7 +180,7 @@ nav {
   }
 
   @media (min-width: 768px) {
-    padding: 7rem 0 9rem 0;
+    padding: 12dvh 0;
 
     h1 {
       justify-self: flex-start;
@@ -199,6 +204,12 @@ nav {
   }
 
   @media (min-width: 1280px) {
+    h1 {
+      width: 800px;
+    }
+  }
+
+  @media (min-width: 1536px) {
     h1 {
       width: 900px;
       font-size: 3rem;
