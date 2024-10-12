@@ -3,7 +3,7 @@ import { useGameStore } from "../zustand/gameStore";
 import GameCard from "./GameCard";
 
 const GameScreen = () => {
-  const { attempts, time, startGame, cards, difficultyLevel } = useGameStore();
+  const { attempts, startGame, cards, difficultyLevel } = useGameStore();
 
   useEffect(() => {
     startGame();
@@ -19,7 +19,7 @@ const GameScreen = () => {
         <span className="attempts">{attempts} attempts</span>
       </div>
       <div className={`game-grid ${difficultyLevel}`}>
-        {cards.map((card) => (
+        {cards.map(() => (
           <GameCard />
         ))}
       </div>
