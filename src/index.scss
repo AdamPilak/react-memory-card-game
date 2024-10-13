@@ -57,7 +57,7 @@ main {
   justify-content: center;
   padding: $nav-height 4% 0;
 
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     padding: $nav-height 10% 0;
   }
 }
@@ -147,6 +147,7 @@ nav {
         font-size: 1rem;
         background: transparent;
         backdrop-filter: none;
+        transform: none;
         padding: 0;
       }
 
@@ -156,7 +157,7 @@ nav {
     }
   }
 
-  @media (min-width: 1536px) {
+  @media (min-width: 1024px) {
     padding: 1.5rem 10%;
   }
 }
@@ -284,7 +285,7 @@ nav {
       rgba(116, 115, 99, 0.6) 0%,
       rgba(17, 17, 17, 0.9) 100%
     );
-    padding: 1.5rem;
+    padding: 1.5rem 2rem;
     filter: drop-shadow(0px 3px 4px rgba(28, 0, 34, 0.75));
     backdrop-filter: blur(15px);
 
@@ -326,7 +327,7 @@ nav {
       align-items: center;
       height: 100%;
       width: 100%;
-      max-width: 900px;
+      max-width: 950px;
 
       .game-header {
         display: flex;
@@ -346,32 +347,65 @@ nav {
           align-items: center;
           gap: 1rem;
           .clock {
-            width: 3rem;
-            height: 3rem;
+            width: 2.5rem;
+            height: 2.5rem;
           }
         }
       }
 
       .game-grid {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        justify-content: center;
         padding: 2rem 0;
         width: 100%;
-        justify-content: center;
         gap: 3vw;
+
+        .game-card {
+          aspect-ratio: 1;
+          img {
+            height: 30px;
+            max-height: 125px;
+          }
+        }
+
+        &.easy {
+          grid-template-columns: repeat(3, 25%);
+          // .game-card {
+          //   img {
+          //     height: 11.5vw;
+          //     max-height: 125px;
+          //   }
+          // }
+        }
+
+        // &.medium {
+        //   .game-card {
+        //     img {
+        //       height: 9.5vw;
+        //       max-height: 100px;
+        //     }
+        //   }
+        // }
+
+        &.hard {
+          display: grid;
+          grid-template-columns: repeat(4, 20%);
+          // .game-card {
+          //   img {
+          //     height: 7.5vw;
+          //     max-height: 85px;
+          //   }
+          // }
+        }
 
         .game-card {
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 0.75rem;
-          padding: 0.25rem;
+          padding: 1rem;
           background: linear-gradient(-152.443deg, #0f0068 0%, #570069 80%);
           filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
-          img {
-            height: 13vw;
-            max-height: 70px;
-          }
         }
       }
 
@@ -385,7 +419,7 @@ nav {
 
   @media (min-width: 640px) {
     .game-board {
-      padding: 2.5rem;
+      padding: 2.5rem 3rem;
       .game-screen {
         .game-header {
           .time span,
@@ -395,12 +429,14 @@ nav {
         }
 
         .game-grid {
-          gap: 2vw;
-          .game-card {
-            img {
-              height: 9vw;
-              max-height: 110px;
-            }
+          display: grid;
+
+          &.easy {
+            grid-template-columns: repeat(3, 20%);
+          }
+
+          &.hard {
+            grid-template-columns: repeat(4, 16%);
           }
         }
 
@@ -414,26 +450,81 @@ nav {
   }
 
   @media (min-width: 768px) {
+    padding: 2rem 0;
+
     .game-board {
       .difficulty-levels {
         h2 {
           font-size: 2rem;
         }
       }
+
+      .game-screen {
+        .game-grid {
+          gap: 2.25vw;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .game-board {
+      .game-screen {
+        .game-grid {
+          &.easy {
+            grid-template-columns: repeat(4, 15%);
+          }
+          // gap: 1.75rem;
+          // &.easy {
+          //   .game-card {
+          //     img {
+          //       height: 9vw;
+          //     }
+          //   }
+          // }
+
+          &.medium {
+            .game-card {
+              img {
+                height: 7vw;
+              }
+            }
+          }
+
+          &.hard {
+            grid-template-columns: repeat(5, 12%);
+
+            // .game-card {
+            //   img {
+            //     height: 5vw;
+            //   }
+            // }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .game-board {
+      .game-screen {
+        .game-grid {
+          gap: 1.75rem;
+        }
+      }
     }
   }
 
   @media (min-width: 1536px) {
-    padding: 1.5rem 0;
-
     .game-board {
       .game-screen {
         .game-grid {
-          gap: 1vw;
-          .game-card {
-            img {
-              height: 6vw;
-            }
+          &.easy {
+            // grid-template-columns: repeat(4, 15%);
+          }
+
+          &.hard {
+            // grid-template-columns: repeat(5, 12%);
           }
         }
       }

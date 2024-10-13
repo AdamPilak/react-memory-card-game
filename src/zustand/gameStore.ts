@@ -36,10 +36,10 @@ export const useGameStore = create<GameStore>((set) => ({
           numberOfCards = 12;
           break;
         case "medium":
-          numberOfCards = 18;
+          numberOfCards = 16;
           break;
         case "hard":
-          numberOfCards = 24;
+          numberOfCards = 20;
           break;
       }
 
