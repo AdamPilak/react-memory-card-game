@@ -5,9 +5,18 @@ type GameStore = {
   cards: GameCard[];
   attempts: number;
   difficultyLevel: typeof DIFFICULTY_LEVELS;
-  time?: string;
+  pairsMatched: number;
+  selectedPair: GameCard[];
+  timeInterval?: number;
+  time?: Date;
   addAttempts: () => void;
   setDifficultyLevel: (level: typeof DIFFICULTY_LEVELS) => void;
+  incrementPairsMatched: () => void;
+  incrementTime: () => void;
+  startTime: () => void;
+  stopTime: () => void;
+  flipCard: (index: number) => void;
+  generateCards: (numberOfCards: number) => GameCard[];
   startGame: () => void;
 };
 
@@ -15,17 +24,142 @@ type GameCard = {
   value: string;
   imgSrc: string;
   matched: boolean;
+  flipped: boolean;
 };
 
 export const useGameStore = create<GameStore>((set) => ({
   cards: [],
   attempts: 0,
   difficultyLevel: "unset",
+  selectedPair: [],
+  pairsMatched: 0,
+  timeInterval: undefined,
+  time: undefined,
   addAttempts: () => {
     set((state) => ({ attempts: state.attempts + 1 }));
   },
   setDifficultyLevel: (level: typeof DIFFICULTY_LEVELS) => {
     set(() => ({ difficultyLevel: level }));
+  },
+  incrementPairsMatched: () => {
+    set((state) => ({ pairsMatched: state.pairsMatched + 1 }));
+  },
+  incrementTime: () => {
+    set((state) => {
+      if (state.time) {
+        const seconds = state.time.getSeconds();
+        state.time.setSeconds(seconds + 1);
+      }
+
+      setInterval;
+
+      return { time: state.time };
+    });
+  },
+  startTime: () => {
+    set((state) => {
+      state.timeInterval = setInterval(() => {
+        state.incrementTime();
+      }, 1000);
+
+      return { timeInterval: state.timeInterval };
+    });
+  },
+  stopTime: () => {
+    set((state) => {
+      clearInterval(state.timeInterval);
+
+      state.timeInterval = undefined;
+
+      return { timeInterval: state.timeInterval };
+    });
+  },
+  flipCard: async (index: number) => {
+    set((state) => {
+      const card = state.cards[index];
+      card.flipped = !card.flipped;
+
+      state.addAttempts();
+
+      let selectedPairRef = state.selectedPair;
+
+      selectedPairRef.push(card);
+
+      return { cards: state.cards, selectedPair: selectedPairRef };
+    });
+
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve("");
+      }, 1000)
+    );
+
+    let state = useGameStore.getState();
+
+    if (state.selectedPair.length === 2) {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          resolve("");
+        }, 1000)
+      );
+
+      //Checking for match
+      set((state) => {
+        let selectedPairRef = state.selectedPair;
+
+        if (selectedPairRef.length === 2) {
+          const match = selectedPairRef[0].value === selectedPairRef[1].value;
+
+          if (match) {
+            selectedPairRef[0].matched = true;
+            selectedPairRef[1].matched = true;
+            state.incrementPairsMatched();
+          } else {
+            selectedPairRef[0].flipped = false;
+            selectedPairRef[1].flipped = false;
+          }
+
+          selectedPairRef = [];
+        }
+
+        return { cards: state.cards, selectedPair: selectedPairRef };
+      });
+
+      //Checking for win
+      state = useGameStore.getState();
+
+      if (state.pairsMatched === state.cards.length / 2) {
+        state.stopTime();
+        console.log("You Won!");
+      }
+    }
+  },
+  generateCards: (numberOfCards: number) => {
+    const generatedCards: GameCard[] = [];
+    const randomNumbers: number[] = [];
+
+    for (let i = 0; i < numberOfCards / 2; i++) {
+      let randomNumber = Math.floor(Math.random() * CARD_IMAGES.length);
+      while (randomNumbers.includes(randomNumber)) {
+        randomNumber = Math.floor(Math.random() * CARD_IMAGES.length);
+      }
+
+      randomNumbers.push(randomNumber);
+
+      const selectedImageSrc = CARD_IMAGES[randomNumber];
+
+      const generatedPair = {
+        value: selectedImageSrc.split(".")[0],
+        imgSrc: selectedImageSrc,
+        matched: false,
+        flipped: false,
+      };
+
+      generatedCards.push({ ...generatedPair });
+      generatedCards.push({ ...generatedPair });
+    }
+
+    return generatedCards;
   },
   startGame: () => {
     set((state) => {
@@ -43,36 +177,13 @@ export const useGameStore = create<GameStore>((set) => ({
           break;
       }
 
-      const generatedCards: GameCard[] = [];
-      const randomNumbers: number[] = [];
-
-      for (let i = 0; i < numberOfCards / 2; i++) {
-        let randomNumber = Math.floor(Math.random() * CARD_IMAGES.length);
-        while (randomNumbers.includes(randomNumber)) {
-          randomNumber = Math.floor(Math.random() * CARD_IMAGES.length);
-        }
-
-        randomNumbers.push(randomNumber);
-        console.log(randomNumbers);
-
-        const selectedImageSrc = CARD_IMAGES[randomNumber];
-
-        const generatedPair = {
-          value: selectedImageSrc.split(".")[0],
-          imgSrc: selectedImageSrc,
-          matched: false,
-        };
-
-        generatedCards.push(generatedPair);
-        generatedCards.push(generatedPair);
-      }
-
-      //   const generatedCards = CARD_IMAGES;
+      const generatedCards = state.generateCards(numberOfCards);
 
       return {
         cards: generatedCards,
         attempts: 0,
-        time: undefined,
+        time: new Date(0),
+        pairsMatched: 0,
       };
     });
   },

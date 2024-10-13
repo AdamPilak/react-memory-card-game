@@ -364,14 +364,6 @@ nav {
         width: 100%;
         gap: 3vw;
 
-        .game-card {
-          aspect-ratio: 1;
-          img {
-            width: 90%;
-            min-width: 30px;
-          }
-        }
-
         &.easy {
           grid-template-columns: repeat(3, 25%);
         }
@@ -383,13 +375,29 @@ nav {
         }
 
         .game-card {
+          transition: 0.5s ease;
+
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 0.75rem;
           padding: 1rem;
-          background: linear-gradient(-152.443deg, #0f0068 0%, #570069 80%);
           filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
+          cursor: pointer;
+          aspect-ratio: 1;
+
+          &.front {
+            background: linear-gradient(-152.443deg, #0f0068 0%, #570069 80%);
+          }
+
+          &.back {
+            background: #e7e973;
+          }
+
+          img {
+            width: 90%;
+            min-width: 30px;
+          }
         }
       }
 
