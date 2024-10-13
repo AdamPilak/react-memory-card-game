@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGameStore } from "../zustand/gameStore";
 import GameCard from "./GameCard";
 
@@ -16,8 +16,11 @@ const GameScreen = () => {
     pairsMatched,
   } = useGameStore();
 
+  const [render, setRender] = useState(false);
+
   useEffect(() => {
     startGame();
+    setRender(true);
     startTime();
 
     return () => stopTime();
@@ -34,6 +37,8 @@ const GameScreen = () => {
       return `${formattedMinutes} : ${formattedSeconds}`;
     }
   };
+
+  if (!render) return <></>;
 
   return (
     <div className="game-screen">
