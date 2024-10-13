@@ -90,19 +90,13 @@ export const useGameStore = create<GameStore>((set) => ({
       return { cards: state.cards, selectedPair: selectedPairRef };
     });
 
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve("");
-      }, 1000)
-    );
-
     let state = useGameStore.getState();
 
     if (state.selectedPair.length === 2) {
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve("");
-        }, 1000)
+        }, 800)
       );
 
       //Checking for match
