@@ -187,7 +187,7 @@ nav {
     align-self: flex-end;
     justify-self: center;
     margin-top: 4rem;
-    animation: opacityAnimation 4s;
+    animation: opacityAnimation 3s;
 
     h2 {
       margin-bottom: 2rem;
@@ -383,8 +383,6 @@ nav {
         }
 
         .game-card {
-          transition: 0.5s ease;
-
           display: flex;
           align-items: center;
           justify-content: center;
@@ -393,6 +391,7 @@ nav {
           filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
           cursor: pointer;
           aspect-ratio: 1;
+          animation: opacityAnimation 2s;
 
           &.front {
             background: linear-gradient(-152.443deg, #0f0068 0%, #570069 80%);
