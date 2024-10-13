@@ -80,11 +80,12 @@ export const useGameStore = create<GameStore>((set) => ({
       const card = state.cards[index];
       card.flipped = !card.flipped;
 
-      state.addAttempts();
-
       let selectedPairRef = state.selectedPair;
-
       selectedPairRef.push(card);
+
+      if (selectedPairRef.length === 2) {
+        state.addAttempts();
+      }
 
       return { cards: state.cards, selectedPair: selectedPairRef };
     });
