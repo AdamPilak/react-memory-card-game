@@ -357,6 +357,14 @@ nav {
         }
       }
 
+      .congratulations {
+        color: $text-color;
+        font-size: 2.25rem;
+        text-align: center;
+        line-height: 150%;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      }
+
       .game-grid {
         display: grid;
         justify-content: center;
@@ -463,6 +471,10 @@ nav {
 
       .game-screen {
         width: 75%;
+
+        .congratulations {
+          font-size: 3rem;
+        }
 
         .game-grid {
           gap: 1.25rem;

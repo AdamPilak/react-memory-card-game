@@ -6,7 +6,9 @@ const GameScreen = () => {
   const {
     attempts,
     startGame,
+    resetGame,
     startTime,
+    stopTime,
     cards,
     time,
     difficultyLevel,
@@ -17,6 +19,8 @@ const GameScreen = () => {
   useEffect(() => {
     startGame();
     startTime();
+
+    return () => stopTime();
   }, []);
 
   const formatTime = () => {
@@ -41,7 +45,11 @@ const GameScreen = () => {
         <span className="attempts">{attempts} attempts</span>
       </div>
       {pairsMatched === cards.length / 2 ? (
-        <p>XXXXXXXX</p>
+        <h2 className="congratulations">
+          Congratulations!
+          <br />
+          You Won!
+        </h2>
       ) : (
         <div className={`game-grid ${difficultyLevel}`}>
           {cards.map((card, idx) => (
@@ -56,8 +64,12 @@ const GameScreen = () => {
         </div>
       )}
       <div className="game-footer">
-        <button className="btn">Exit</button>
-        <button className="btn">Reset</button>
+        <button className="btn" onClick={() => resetGame()}>
+          Back
+        </button>
+        <button className="btn" onClick={() => startGame()}>
+          Restart
+        </button>
       </div>
     </div>
   );

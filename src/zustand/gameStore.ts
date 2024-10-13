@@ -18,6 +18,7 @@ type GameStore = {
   flipCard: (index: number) => void;
   generateCards: (numberOfCards: number) => GameCard[];
   startGame: () => void;
+  resetGame: () => void;
 };
 
 type GameCard = {
@@ -159,6 +160,19 @@ export const useGameStore = create<GameStore>((set) => ({
       generatedCards.push({ ...generatedPair });
     }
 
+    let currentIndex = generatedCards.length;
+
+    //Shuffle array
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [generatedCards[currentIndex], generatedCards[randomIndex]] = [
+        generatedCards[randomIndex],
+        generatedCards[currentIndex],
+      ];
+    }
+
     return generatedCards;
   },
   startGame: () => {
@@ -186,5 +200,10 @@ export const useGameStore = create<GameStore>((set) => ({
         pairsMatched: 0,
       };
     });
+  },
+  resetGame: () => {
+    set(() => ({
+      difficultyLevel: "unset",
+    }));
   },
 }));
