@@ -31,7 +31,7 @@ type GameCard = {
 export const useGameStore = create<GameStore>((set) => ({
   cards: [],
   attempts: 0,
-  difficultyLevel: "unset",
+  difficultyLevel: "hard",
   selectedPair: [],
   pairsMatched: 0,
   timeInterval: undefined,
