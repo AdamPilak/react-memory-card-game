@@ -285,7 +285,7 @@ nav {
       rgba(116, 115, 99, 0.6) 0%,
       rgba(17, 17, 17, 0.9) 100%
     );
-    padding: 1.5rem 2rem;
+    padding: 6vw;
     filter: drop-shadow(0px 3px 4px rgba(28, 0, 34, 0.75));
     backdrop-filter: blur(15px);
 
@@ -338,7 +338,7 @@ nav {
         .time span,
         .attempts {
           color: $text-color;
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           font-weight: 600;
         }
 
@@ -363,39 +363,19 @@ nav {
         .game-card {
           aspect-ratio: 1;
           img {
-            height: 30px;
-            max-height: 125px;
+            height: 90%;
+            min-height: 30px;
           }
         }
 
         &.easy {
           grid-template-columns: repeat(3, 25%);
-          // .game-card {
-          //   img {
-          //     height: 11.5vw;
-          //     max-height: 125px;
-          //   }
-          // }
         }
 
-        // &.medium {
-        //   .game-card {
-        //     img {
-        //       height: 9.5vw;
-        //       max-height: 100px;
-        //     }
-        //   }
-        // }
-
+        &.medium,
         &.hard {
           display: grid;
           grid-template-columns: repeat(4, 20%);
-          // .game-card {
-          //   img {
-          //     height: 7.5vw;
-          //     max-height: 85px;
-          //   }
-          // }
         }
 
         .game-card {
@@ -413,36 +393,28 @@ nav {
         display: flex;
         justify-content: space-between;
         width: 100%;
+
+        button {
+          font-size: 1.25rem;
+        }
       }
     }
   }
 
   @media (min-width: 640px) {
     .game-board {
-      padding: 2.5rem 3rem;
+      padding: 2.5rem;
       .game-screen {
-        .game-header {
-          .time span,
-          .attempts {
-            font-size: 1.5rem;
-          }
-        }
-
         .game-grid {
           display: grid;
 
           &.easy {
-            grid-template-columns: repeat(3, 20%);
+            grid-template-columns: repeat(3, 18%);
           }
 
+          &.medium,
           &.hard {
-            grid-template-columns: repeat(4, 16%);
-          }
-        }
-
-        .game-footer {
-          button {
-            font-size: 1.25rem;
+            grid-template-columns: repeat(4, 15%);
           }
         }
       }
@@ -461,7 +433,7 @@ nav {
 
       .game-screen {
         .game-grid {
-          gap: 2.25vw;
+          gap: 2vw;
         }
       }
     }
@@ -470,46 +442,22 @@ nav {
   @media (min-width: 1024px) {
     .game-board {
       .game-screen {
+        width: 75%;
+
         .game-grid {
+          gap: 1.25rem;
+
           &.easy {
-            grid-template-columns: repeat(4, 15%);
+            grid-template-columns: repeat(4, 18%);
           }
-          // gap: 1.75rem;
-          // &.easy {
-          //   .game-card {
-          //     img {
-          //       height: 9vw;
-          //     }
-          //   }
-          // }
 
           &.medium {
-            .game-card {
-              img {
-                height: 7vw;
-              }
-            }
+            grid-template-columns: repeat(4, 14%);
           }
 
           &.hard {
-            grid-template-columns: repeat(5, 12%);
-
-            // .game-card {
-            //   img {
-            //     height: 5vw;
-            //   }
-            // }
+            grid-template-columns: repeat(5, 14%);
           }
-        }
-      }
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .game-board {
-      .game-screen {
-        .game-grid {
-          gap: 1.75rem;
         }
       }
     }
@@ -517,14 +465,20 @@ nav {
 
   @media (min-width: 1536px) {
     .game-board {
+      padding: 3rem;
+      max-height: 900px;
       .game-screen {
         .game-grid {
           &.easy {
-            // grid-template-columns: repeat(4, 15%);
+            grid-template-columns: repeat(4, 17%);
+          }
+
+          &.medium {
+            grid-template-columns: repeat(4, 12.5%);
           }
 
           &.hard {
-            // grid-template-columns: repeat(5, 12%);
+            grid-template-columns: repeat(5, 12.5%);
           }
         }
       }
