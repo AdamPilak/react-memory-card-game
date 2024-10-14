@@ -13,15 +13,23 @@ const History = () => {
   return (
     <section className="history">
       <ul className="games">
-        {games.map((game) => (
-          <li>
-            <div>
-              <span className="time">{formatTime(game.time)}</span>
-              <span className="difficulty-level">{game.difficultyLevel}</span>
+        {games.map((game, idx) => (
+          <li key={idx}>
+            <div className="field">
+              <div className="label">Time</div>
+              <div className="value">{formatTime(game.time)}</div>
             </div>
-            <div>
-              <span className="date">{formatDate(game.date)}</span>
-              <span className="attempts">{game.attempts}</span>
+            <div className="field">
+              <div className="label">Date</div>
+              <div className="value">{formatDate(game.date)}</div>
+            </div>
+            <div className="field">
+              <div className="label">Difficulty</div>
+              <div className="value">{game.difficultyLevel.toUpperCase()}</div>
+            </div>
+            <div className="field">
+              <div className="label">Attempts</div>
+              <div className="value">{game.attempts}</div>
             </div>
           </li>
         ))}

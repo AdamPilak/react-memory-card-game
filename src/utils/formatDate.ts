@@ -5,13 +5,10 @@ export const formatDate = (date?: Date) => {
     const newDate = new Date(date);
 
     const year = newDate.getFullYear();
-    const formattedMonth = addZero(newDate.getMonth());
-    const formattedDay = addZero(newDate.getDay());
+    const formattedMonth = addZero(newDate.getMonth() + 1);
+    const formattedDay = addZero(newDate.getDate());
 
-    const formattedMinutes = addZero(newDate.getMinutes());
-    const formattedSeconds = addZero(newDate.getSeconds());
-
-    return `${formattedDay}/${formattedMonth}/${year} ${formattedMinutes} : ${formattedSeconds}`;
+    return `${formattedDay}/${formattedMonth}/${year}`;
   }
 
   return "";
