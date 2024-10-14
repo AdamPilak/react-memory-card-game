@@ -369,7 +369,7 @@ nav {
       .game-grid {
         display: grid;
         justify-content: center;
-        padding: 2rem 0;
+        padding: 1.5rem 0;
         width: 100%;
         gap: 3vw;
         animation: opacityAnimation 1.5s;
@@ -380,7 +380,6 @@ nav {
 
         &.medium,
         &.hard {
-          display: grid;
           grid-template-columns: repeat(4, 20%);
         }
 
