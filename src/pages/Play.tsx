@@ -12,7 +12,6 @@ const Play = () => {
 
   return (
     <section className="play">
-      <img className="fruit" src="/cherries.png" />
       <div className="game-board">
         {difficultyLevel === "unset" ? <DifficultyLevels /> : <GameScreen />}
       </div>

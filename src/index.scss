@@ -264,17 +264,9 @@ nav {
   }
 }
 
+// Play
 .play {
-  position: relative;
   padding: 1rem 0;
-
-  .fruit {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 110px;
-    width: 110px;
-  }
 
   .game-board {
     display: flex;
@@ -607,6 +599,7 @@ nav {
   }
 }
 
+// Keyframes
 @keyframes opacityAnimation {
   from {
     opacity: 0;
