@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { CARD_IMAGES, DIFFICULTY_LEVELS } from "../config/gameConfig";
+import { useHistoryStore } from "./historyStore";
 
 type GameStore = {
   cards: GameCard[];
@@ -126,7 +127,14 @@ export const useGameStore = create<GameStore>((set) => ({
 
       if (state.pairsMatched === state.cards.length / 2) {
         state.stopTime();
-        console.log("You Won!");
+
+        const saveGame = useHistoryStore.getState().saveGame;
+        saveGame({
+          attempts: state.attempts,
+          date: new Date(),
+          time: state.time!,
+          difficultyLevel: state.difficultyLevel,
+        });
       }
     }
   },
@@ -193,6 +201,7 @@ export const useGameStore = create<GameStore>((set) => ({
         attempts: 0,
         time: new Date(0),
         pairsMatched: 0,
+        selectedPair: [],
       };
     });
   },

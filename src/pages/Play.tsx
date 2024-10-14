@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import DifficultyLevels from "../components/DifficultyLevels";
 import GameScreen from "../components/GameScreen";
 import { useGameStore } from "../zustand/gameStore";
 
 const Play = () => {
-  const { difficultyLevel } = useGameStore();
+  const { difficultyLevel, setDifficultyLevel } = useGameStore();
+
+  useEffect(() => {
+    return () => setDifficultyLevel("unset");
+  }, []);
 
   return (
     <section className="play">

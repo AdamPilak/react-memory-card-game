@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useGameStore } from "../zustand/gameStore";
 import GameCard from "./GameCard";
+import { formatTime } from "../utils/formatTime";
 
 const GameScreen = () => {
   const {
@@ -16,36 +17,24 @@ const GameScreen = () => {
     pairsMatched,
   } = useGameStore();
 
-  const [render, setRender] = useState(false);
+  const handleStart = useCallback(() => {
+    stopTime();
+    startGame();
+    startTime();
+  }, []);
 
   useEffect(() => {
-    startGame();
-    setRender(true);
-    startTime();
+    handleStart();
 
     return () => stopTime();
   }, []);
-
-  const formatTime = () => {
-    if (time) {
-      const minutes = time?.getMinutes();
-      const seconds = time?.getSeconds();
-
-      const formattedMinutes = (minutes < 10 ? "0" : "") + minutes;
-      const formattedSeconds = (seconds < 10 ? "0" : "") + seconds;
-
-      return `${formattedMinutes} : ${formattedSeconds}`;
-    }
-  };
-
-  if (!render) return <></>;
 
   return (
     <div className="game-screen">
       <div className="game-header">
         <span className="time">
           <img className="clock" src="/clock.png" alt="clock" />
-          <span>{formatTime()}</span>
+          <span>{formatTime(time)}</span>
         </span>
         <span className="attempts">{attempts} attempts</span>
       </div>
@@ -72,7 +61,7 @@ const GameScreen = () => {
         <button className="btn" onClick={() => resetGame()}>
           Back
         </button>
-        <button className="btn" onClick={() => startGame()}>
+        <button className="btn" onClick={() => handleStart()}>
           Restart
         </button>
       </div>

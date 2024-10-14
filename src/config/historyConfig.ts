@@ -1,0 +1,1 @@
+export const STORAGE_LABEL = "MEMORY_CARD_GAME_HISTORY";

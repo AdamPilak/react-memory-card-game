@@ -15,10 +15,7 @@ const Navigation = () => {
           <Link className="nav-link" to="/play">
             PLAY
           </Link>
-          {/* <Link className="nav-link" to="/play">
-          STATISTICS
-        </Link> */}
-          <Link className="nav-link" to="/play">
+          <Link className="nav-link" to="/history">
             HISTORY
           </Link>
         </div>
