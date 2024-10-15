@@ -18,10 +18,10 @@ const GameCard = ({ flipped, index, imgSrc, selectedPairCount }: Props) => {
         className="game-card front"
         onClick={() => flipCard(index)}
       >
-        <img src="/question-mark.png" alt="Question Mark" />
+        <img draggable={false} src="/question-mark.png" alt="Question Mark" />
       </button>
       <button disabled={flipped} className="game-card back">
-        <img src={imgSrc} alt="Fruit" />
+        <img draggable={false} src={imgSrc} alt="Fruit" />
       </button>
     </ReactCardFlip>
   );
