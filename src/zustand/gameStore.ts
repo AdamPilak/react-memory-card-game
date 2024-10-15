@@ -1,5 +1,9 @@
 import { create } from "zustand";
-import { CARD_IMAGES, DIFFICULTY_LEVELS } from "../config/gameConfig";
+import {
+  CARD_IMAGES,
+  DIFFICULTY_LEVELS,
+  PAUSE_DURATION,
+} from "../config/gameConfig";
 import { useHistoryStore } from "./historyStore";
 
 type GameStore = {
@@ -97,7 +101,7 @@ export const useGameStore = create<GameStore>((set) => ({
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve("");
-        }, 800)
+        }, PAUSE_DURATION)
       );
 
       //Checking for match

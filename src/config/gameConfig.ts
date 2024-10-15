@@ -14,3 +14,5 @@ export const CARD_IMAGES = [
 ] as const;
 
 export const DIFFICULTY_LEVELS: "unset" | "easy" | "medium" | "hard" = "unset";
+
+export const PAUSE_DURATION = 750;
