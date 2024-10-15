@@ -13,26 +13,32 @@ const History = () => {
   return (
     <section className="history">
       <ul className="games">
-        {games.map((game, idx) => (
-          <li key={idx}>
-            <div className="field">
-              <div className="label">Time</div>
-              <div className="value">{formatTime(game.time)}</div>
-            </div>
-            <div className="field">
-              <div className="label">Date</div>
-              <div className="value">{formatDate(game.date)}</div>
-            </div>
-            <div className="field">
-              <div className="label">Difficulty</div>
-              <div className="value">{game.difficultyLevel.toUpperCase()}</div>
-            </div>
-            <div className="field">
-              <div className="label">Attempts</div>
-              <div className="value">{game.attempts}</div>
-            </div>
-          </li>
-        ))}
+        {games.length === 0 ? (
+          <li className="no-results">No results</li>
+        ) : (
+          games.map((game, idx) => (
+            <li className="game" key={idx}>
+              <div className="field">
+                <div className="label">Time</div>
+                <div className="value">{formatTime(game.time)}</div>
+              </div>
+              <div className="field">
+                <div className="label">Date</div>
+                <div className="value">{formatDate(game.date)}</div>
+              </div>
+              <div className="field">
+                <div className="label">Difficulty</div>
+                <div className="value">
+                  {game.difficultyLevel.toUpperCase()}
+                </div>
+              </div>
+              <div className="field">
+                <div className="label">Attempts</div>
+                <div className="value">{game.attempts}</div>
+              </div>
+            </li>
+          ))
+        )}
       </ul>
     </section>
   );

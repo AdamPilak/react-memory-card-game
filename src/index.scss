@@ -520,46 +520,56 @@ nav {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    list-style: none;
+
     li {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
       max-width: 1100px;
       width: 100%;
-      background: rgba(0, 0, 0, 0.5);
       padding: 1.5rem;
       gap: 1.5rem;
       border-radius: 1rem;
+      background: rgba(0, 0, 0, 0.5);
       box-shadow: 0px 3px 4px rgba(28, 0, 34, 0.75);
-      backdrop-filter: blur(15px) opacity(40%);
+      backdrop-filter: opacity(40%);
       animation: opacityAnimation 1.5s;
 
-      .field {
-        display: flex;
-        flex-direction: column;
-        max-width: 15rem;
-        color: $text-color;
+      &.no-results {
         font-size: 1.25rem;
-        border-radius: 0.5rem;
-        overflow: hidden;
+        color: $text-color;
+      }
 
-        &:nth-child(odd) {
-          margin-left: auto;
-          width: 100%;
-        }
+      &.game {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
 
-        .label {
-          background: linear-gradient(-135.474deg, #65007c 0%, #8e00ad 100%);
-          padding: 0.75rem;
-          font-weight: 600;
-          text-shadow: 0px 0px 3px black;
-        }
+        .field {
+          display: flex;
+          flex-direction: column;
+          max-width: 15rem;
+          color: $text-color;
+          font-size: 1.25rem;
+          border-radius: 0.5rem;
+          overflow: hidden;
 
-        .value {
-          background: #4b005b;
-          text-align: center;
-          padding: 1rem 0.75rem;
-          font-weight: 500;
+          &:nth-child(odd) {
+            margin-left: auto;
+            width: 100%;
+          }
+
+          .label {
+            background: linear-gradient(-135.474deg, #65007c 0%, #8e00ad 100%);
+            padding: 0.75rem;
+            font-weight: 600;
+            text-shadow: 0px 0px 3px black;
+          }
+
+          .value {
+            background: #4b005b;
+            text-align: center;
+            padding: 1rem 0.75rem;
+            font-weight: 500;
+          }
         }
       }
     }
