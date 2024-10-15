@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useGameStore } from "../zustand/gameStore";
 import GameCard from "./GameCard";
 import { formatTime } from "../utils/formatTime";
+import Confetti from "react-dom-confetti";
 
 const GameScreen = () => {
   const {
@@ -31,6 +32,13 @@ const GameScreen = () => {
 
   return (
     <div className="game-screen">
+      <div className="confetti">
+        <Confetti
+          active={pairsMatched === cards.length / 2}
+          config={{ elementCount: 200, spread: 90 }}
+        />
+      </div>
+
       <div className="game-header">
         <span className="time">
           <img className="clock" src="/clock.png" alt="clock" />
